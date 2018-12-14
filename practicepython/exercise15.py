@@ -41,7 +41,7 @@ def switcheroo(lovely_sentence):
 
 print(switcheroo(get_string("Please provide a string, and I'll switcheroo the words for you: ")))
 
-##### Neat and cute, but QUESTION: like, what even is the point of putting it into a function instead of just dropping that line somewhere on its own? 
+##### Neat and cute, but QUESTION: like, what even is the point of putting it into a function instead of just dropping that line somewhere on its own?
 #### QUESTION: is neat and tidy worth the abstraction away from easily human-parsable? I'd def argue no in such a simple program as this, but the question is probz how fast things run with big stuff. Oo, let's science!
 
 # short_string = "My name is Molly"
