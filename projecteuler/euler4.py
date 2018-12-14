@@ -32,16 +32,16 @@ def multiplier(list_a, list_b):
 
 products = multiplier(a, b) # I'm reusing a list name outside of the function which isn't ideal but here makes sense; is there a cleaner way to "export" it instead of double-scoping?
 
-# print(f"Products: {products}") # The PRINTING is the part of ALL THIS maths that takes time. Computers are cool. 
+# print(f"Products: {products}") # The PRINTING is the part of ALL THIS maths that takes time. Computers are cool.
 
 
 #### Palindrome checker
 
-def pal_check(products_list):
+def pal_check(products_list): # highest_pal_returner
 
     palindromes = []
 
-    for k in sorted(products_list):
+    for k in products_list:
         if str(k) == str(k)[::-1] and len(str(k)) > 3:
             palindromes.append(k)
             # print(f"Appending palindrome {k} to list")
@@ -53,3 +53,8 @@ print(f"Here's the largest palindrome product of two 3-digit numbers: {pal_check
 #### The largest palindrome made from the product of two 3-digit numbers is 906609.
 #### Congratulations, the answer you gave to problem 4 is correct.
 #### You are the 408414th person to have solved this problem.
+
+#### HOW TO TIME STUFF
+import time
+start_nanos = time.perf_counter_ns()
+elapsed_time = start_nanos - time.perf_counter_ns()

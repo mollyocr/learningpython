@@ -42,6 +42,7 @@ def fib_gen(seq_len):
     #### if
     if seq_len == 0:
         fib_list = []
+        return # BAIL OUT on the rest of this function because it doesn't need to go any further x all
 
     elif seq_len == 1:
         fib_list = [1]
