@@ -18,9 +18,18 @@
 
 def modularizer():
     candidate = 2520 # Start here
-    while 1 == 1: # This still feels hacky. I just mean "keep doing this" until...
+    while True: # This still feels hacky. I just mean "keep doing this" until...
         candidate += 2520 # Step
-        if candidate % 11 == 0 and candidate % 12 == 0 and candidate % 13 == 0 and candidate % 14 == 0 and candidate % 15 == 0 and candidate % 16 == 0 and candidate % 17 == 0 and candidate % 18 == 0 and candidate % 19 == 0: # Every condition must be satisfied
+        # print(candidate)
+        if candidate % 11 == 0 and \
+            candidate % 12 == 0 and \
+            candidate % 13 == 0 and \
+            candidate % 14 == 0 and \
+            candidate % 15 == 0 and \
+            candidate % 16 == 0 and \
+            candidate % 17 == 0 and \
+            candidate % 18 == 0 and \
+            candidate % 19 == 0: # Every condition must be satisfied
             return candidate # Spit it out
             break # Bail! I only need the first one
 

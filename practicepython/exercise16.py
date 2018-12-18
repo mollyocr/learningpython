@@ -25,29 +25,29 @@ def get_string(help_text="Please provide a string: "):
 def get_integer(help_text="Provide a number: "):
     return int(input(help_text))
 
-#### Now let's make a randomish pw that I can remember
-# def weak_pw_gen(weak_plz):
-#
-#     adjectives = ["Angry", "Beautiful", "Clever", "Dangerous", "Exciting", "Forgetful", "Graceful", "Happy", "Inconsiderate", "Lucky", "Old", "Pretty", "Romantic", "Sad", "Ugly"]
-#
-#     animals = ["Alligator", "Bear", "Chicken", "Duck", "Elephant", "Fox", "Giraffe", "Horse", "Iguana", "Kangaroo", "Lion", "Monkey", "Octopus", "Panda", "Rabbit", "Snake", "Tiger", "Wolf", "Zebra"]
-#
-#     pw_front = str(random.choices(adjectives))
-#     pw_back = str(random.choices(animals))
-#
-#     print(f"adj = {pw_front}")
-#     print(f"animal = {pw_back}")
-#
-#     pw = str(pw_front) + str(pw_back)
-#
-#     # print(f"Your pw is {str(pw)}, but like put together ARGH")
-#
-#     return pw
-#
-# #### Make it run
+### Now let's make a randomish pw that I can remember
+def weak_pw_gen(weak_plz):
+
+    adjectives = ["Angry", "Beautiful", "Clever", "Dangerous", "Exciting", "Forgetful", "Graceful", "Happy", "Inconsiderate", "Lucky", "Old", "Pretty", "Romantic", "Sad", "Ugly"]
+
+    animals = ["Alligator", "Bear", "Chicken", "Duck", "Elephant", "Fox", "Giraffe", "Horse", "Iguana", "Kangaroo", "Lion", "Monkey", "Octopus", "Panda", "Rabbit", "Snake", "Tiger", "Wolf", "Zebra"]
+
+    pw_front = random.choices(adjectives)
+    pw_back = random.choices(animals)
+
+    print(f"adj = {pw_front}")
+    print(f"animal = {pw_back}")
+
+    pw = pw_front[0] + pw_back[0]
+
+    # print(f"Your pw is {str(pw)}, but like put together ARGH")
+
+    return pw
+
+#### Make it run
 # print(weak_pw_gen(get_string("Would you like a weak pw? Enter y >> ")))
 
-#### ARGH, I can't figure out how to join/concatenate the two parts all pretty-like and it's driving me BONKERS. join function doesn't work here because it'll only take two things from the same list/set. TODO: Work this out with Mike.
+#### ARGH, I can't figure out how to join/concatenate the two parts all pretty-like and it's driving me BONKERS. join function doesn't work here because it'll only take two things from the same list/set. DONE: Work this out with Mike.
 
 #### Try again but simpler so you can make it work on your own.
 def weak_pw_gen_v2(weak_plz):
@@ -66,6 +66,7 @@ def strong_pw_gen(strong_plz):
     length = get_integer("How many characters do you need your strong password to be? Please enter an integer >> ")
 
     characters = string.ascii_letters + string.digits + string.punctuation
+    #### TODO: Try this! How else can you do this? "chr()" function + random ints
 
     pw = "".join(random.choices(characters, k=length)) # Using random.choices here bc replacement is randomer
 
@@ -90,3 +91,7 @@ else:
         elif pw_type == "strong":
             print(f"Here is your strong password: {strong_pw_gen(pw_type)}")
             break
+
+# TODO: Rework with secrets modle instead of random bc security.
+# TODO: Find a pylint (find the missing brackets etc) package for Atom.
+# TODO: pycharm?? 
