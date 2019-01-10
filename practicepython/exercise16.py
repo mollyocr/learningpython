@@ -60,7 +60,7 @@ def weak_pw_gen_v2(weak_plz):
 
     return pw
 
-#### Fine. Cool. Now let's make a strong pw generator.
+#### Fine. Cool. Now let's make a stronger pw generator.
 def strong_pw_gen(strong_plz):
 
     length = get_integer("How many characters do you need your strong password to be? Please enter an integer >> ")
@@ -94,4 +94,4 @@ else:
 
 # TODO: Rework with secrets modle instead of random bc security.
 # TODO: Find a pylint (find the missing brackets etc) package for Atom.
-# TODO: pycharm?? 
+# TODO: pycharm??

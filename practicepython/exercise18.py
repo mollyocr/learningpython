@@ -15,3 +15,119 @@
 #   1 cow, 1 bull
 #   ...
 # Until the user guesses the number.
+
+#### TODO
+# 1. Get a random four-digit number, then slice it up into four digits
+# 2. Get user input and slice it up too
+# 3. Compare and compare and compare and compare?
+# 4. Give feedback output, keep score, then collect new input that gets put back through the evaluator function
+# 5. Optional: Wrap it all up inside of a (tennis) match?
+
+#### Some stuff I'll need
+import random
+import string
+
+# def function to get input()
+#     get input
+#     validate input
+#         if it's exit, bail
+#         if it's not a number, guess again
+#         if it's not the right size number, guess again
+#     return guess
+
+#### LET's try a validator function
+def validate(user_input):
+    if user_input.isnumeric() == False: # Validate input
+        return False
+    elif int(user_input) < 1000 or int(user_input) > 9999: # TODO: Validate this as a string instead of a number using len() instead! This should fix the leading zeros prob.
+        return False
+    else:
+        return True
+
+#### Call for input quick and easy
+def get_input(help_text="Please enter a four digit numberical guess. >> "):
+        while True:
+            guess = input(help_text)
+            if guess == "exit":
+                sys.exit()
+            elif validate(guess) == True:
+                return guess
+
+#### Define a funcation to compare the numbers
+def compare(secret_number, guess):
+    cows = 0
+    bulls = 0
+    for i in range(0, len(secret_number)):
+        # print(i)
+        if secret_number[i] == guess[i]:
+            cows += 1
+
+        if (secret_number[i] != guess[i]) and (guess[i] in secret_number): # TODO: This isn't quite right. If there are two of the same digit in the secret_number then it's misleading because the player thinks that it must be one of the other numbers that's a bull.
+            bulls += 1
+
+    return cows, bulls
+
+#### STICK ALL THE ACTION INSIDE A MAIN METHOD YO
+if __name__=="__main__":
+
+    play = True # To bail out later once cows = 4
+    #### Keep track of how many guesses it takes
+    guess_count = 0
+
+    #### Let's get this party started
+    print("\n** Welcome to the Cows and Bulls game! **\n \
+        \n     /)  (\                    /)  (\\\
+        \n.-._((,~~.))_.-,          .-._((,~~.))_.-,\
+        \n`-.    @@   ,-'          `-.     @@   ,-'\
+        \n   / ,o--o. \                / ,o--o. \\\
+        \n  ( ( .__. ) )              ( ( .__. ) )\
+        \n   ) `----' (                ) `----' (\
+        \n  /          \              /          \\\
+        \n /            \            /            \\\
+        \n/              \          /              \\\
+        \n \nI have chosen a random four digit number. Try and guess it! \
+        \nEvery digit you guess correctly in the correct place is a 'cow'. \
+        \nEvery digit you guess correctly in the wrong place is a 'bull.' \
+        \nThe game ends when you get 4 cows! \n")
+
+    #### Computer, get a number
+    secret_number = "".join(random.choices(string.digits, k=4))
+    print(f"** Psst, the secret_number is **{secret_number}**")
+
+    #### It's go time
+    while play:
+        #### COLLECT USER INPUT
+        guess = get_input()
+        print(f"\nYour guess is **{str(guess)}**")
+
+        #### Now call the compare function to do the work
+        if guess == -1:
+            sys.exit()
+        else:
+            cows, bulls = compare(secret_number, guess) # Reusing variable names inside and outside function but it makes sense
+        guess_count += 1 # Increment the score if you loop back through here with more guesses
+
+        #### Play!
+        if cows == 4:
+            print(f"MOO! You win! \
+            \nIt took you {guess_count} guesses.")
+            print("          /)  (\\\
+                \n     .-._((,~~.))_.-,\
+                \n      `-.   @@   ,-'\
+                \n        / ,n--n. \\\
+                \n(`'\   ( ( .__. ) )  /`')\
+                \n `.'\"._ ) `----' (_,\"`.'\
+                \n   \"._             _,\"\
+                \n      /            \\\
+                \n     (              )\
+                \n     (`-.__    __.-')\
+                \n      \   /`--'\   /\
+                \n       ) /      \ (\
+                \n      /._\      /_,\\ ")
+            play = False
+        else:
+            print(f"** Cows: {cows}. Bulls: {bulls}. Guess again!") # Back to the start of the while loop, sucker. Here's some feedback to help.
+
+#### TODO: Wtf, the first digit is disappearing if it's zero. 'cause it's an integer?? ugh, does this mean I have to do int to string conversion, because then I have to do the list(map(int, guess)) thing. Hmm ugh.
+    ## Please enter a four digit guess. >> 0337
+    ## Your guess is **337**
